@@ -90,7 +90,7 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
-    <Content Include="Venda.aspx" />
+    <Content Include="CadastroVenda.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -157,16 +157,15 @@
     <Compile Include="Tipo.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Venda.aspx.cs">
-      <DependentUpon>Venda.aspx</DependentUpon>
+    <Compile Include="CadastroVenda.aspx.cs">
+      <DependentUpon>CadastroVenda.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Venda.aspx.designer.cs">
-      <DependentUpon>Venda.aspx</DependentUpon>
+    <Compile Include="CadastroVenda.aspx.designer.cs">
+      <DependentUpon>CadastroVenda.aspx</DependentUpon>
     </Compile>
     <Compile Include="Venda.cs">
       <DependentUpon>Model.tt</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>

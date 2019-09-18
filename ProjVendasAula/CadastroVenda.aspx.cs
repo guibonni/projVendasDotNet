@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace ProjVendasAula
 {
-    public partial class Venda : System.Web.UI.Page
+    public partial class CadastroVenda : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

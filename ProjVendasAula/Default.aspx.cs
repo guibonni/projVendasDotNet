@@ -36,7 +36,7 @@ namespace ProjVendasAula
 
         protected void BtnVenda_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Venda.aspx");
+            Response.Redirect("CadastroVenda.aspx");
         }
     }
 }

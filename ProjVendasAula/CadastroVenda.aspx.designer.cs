@@ -10,7 +10,7 @@
 namespace ProjVendasAula {
     
     
-    public partial class Venda {
+    public partial class CadastroVenda {
         
         /// <summary>
         /// Controle form1.
