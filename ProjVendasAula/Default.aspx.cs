@@ -18,5 +18,25 @@ namespace ProjVendasAula
         {
             Response.Redirect("CadastroTipo.aspx");
         }
+
+        protected void BtnCliente_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("CadastroCliente.aspx");
+        }
+
+        protected void BtnFornecedor_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("CadastroFornecedor.aspx");
+        }
+
+        protected void BtnMaterial_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("CadastroMaterial.aspx");
+        }
+
+        protected void BtnVenda_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Venda.aspx");
+        }
     }
 }

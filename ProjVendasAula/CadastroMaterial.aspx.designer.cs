@@ -10,60 +10,87 @@
 namespace ProjVendasAula {
     
     
-    public partial class Default {
+    public partial class CadastroMaterial {
         
         /// <summary>
-        /// Controle formDefault.
+        /// Controle form1.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm formDefault;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// Controle BtnTipo.
+        /// Controle LblMsg.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnTipo;
+        protected global::System.Web.UI.WebControls.Label LblMsg;
         
         /// <summary>
-        /// Controle BtnCliente.
+        /// Controle TxtDescricao.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnCliente;
+        protected global::System.Web.UI.WebControls.TextBox TxtDescricao;
         
         /// <summary>
-        /// Controle BtnFornecedor.
+        /// Controle DDLTipo.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnFornecedor;
+        protected global::System.Web.UI.WebControls.DropDownList DDLTipo;
         
         /// <summary>
-        /// Controle BtnMaterial.
+        /// Controle TxtValor.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnMaterial;
+        protected global::System.Web.UI.WebControls.TextBox TxtValor;
         
         /// <summary>
-        /// Controle BtnVenda.
+        /// Controle DDLFornecedor.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnVenda;
+        protected global::System.Web.UI.WebControls.DropDownList DDLFornecedor;
+        
+        /// <summary>
+        /// Controle GVMateriais.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GVMateriais;
+        
+        /// <summary>
+        /// Controle BtnVoltar.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnVoltar;
+        
+        /// <summary>
+        /// Controle BtnSalvar.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Modificar a declaração do campo de movimento do arquivo de designer para o arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnSalvar;
     }
 }

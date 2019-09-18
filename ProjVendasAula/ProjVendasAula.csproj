@@ -76,6 +76,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CadastroCliente.aspx" />
+    <Content Include="CadastroFornecedor.aspx" />
+    <Content Include="CadastroMaterial.aspx" />
     <Content Include="CadastroTipo.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Model.Context.tt">
@@ -88,6 +90,7 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+    <Content Include="Venda.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -97,6 +100,20 @@
     </Compile>
     <Compile Include="CadastroCliente.aspx.designer.cs">
       <DependentUpon>CadastroCliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CadastroFornecedor.aspx.cs">
+      <DependentUpon>CadastroFornecedor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CadastroFornecedor.aspx.designer.cs">
+      <DependentUpon>CadastroFornecedor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CadastroMaterial.aspx.cs">
+      <DependentUpon>CadastroMaterial.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CadastroMaterial.aspx.designer.cs">
+      <DependentUpon>CadastroMaterial.aspx</DependentUpon>
     </Compile>
     <Compile Include="CadastroTipo.aspx.cs">
       <DependentUpon>CadastroTipo.aspx</DependentUpon>
@@ -140,8 +157,16 @@
     <Compile Include="Tipo.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Venda.aspx.cs">
+      <DependentUpon>Venda.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Venda.aspx.designer.cs">
+      <DependentUpon>Venda.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Venda.cs">
       <DependentUpon>Model.tt</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>

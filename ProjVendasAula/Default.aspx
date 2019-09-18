@@ -10,8 +10,16 @@
 <body>
     <form id="formDefault" runat="server">
         <div>
+            <table>
+                <tr>
+                    <td><asp:Button ID="BtnTipo" runat="server" Text="Tipo" OnClick="BtnTipo_Click" /></td>
+                    <td><asp:Button ID="BtnCliente" runat="server" Text="Cliente" OnClick="BtnCliente_Click" /></td>
+                    <td><asp:Button ID="BtnFornecedor" runat="server" Text="Fornecedor" OnClick="BtnFornecedor_Click" /></td>
+                    <td><asp:Button ID="BtnMaterial" runat="server" Text="Material" OnClick="BtnMaterial_Click" /></td>
+                    <td><asp:Button ID="BtnVenda" runat="server" Text="Venda" OnClick="BtnVenda_Click" /></td>
+                </tr>
+            </table>
         </div>
-        <asp:Button ID="BtnTipo" runat="server" Text="Tipo" OnClick="BtnTipo_Click" />
     </form>
 </body>
 </html>
