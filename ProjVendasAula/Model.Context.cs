@@ -25,10 +25,10 @@ namespace ProjVendasAula
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Cliente> Cliente { get; set; }
-        public virtual DbSet<Fornecedor> Fornecedor { get; set; }
         public virtual DbSet<Material> Material { get; set; }
         public virtual DbSet<Tipo> Tipo { get; set; }
         public virtual DbSet<Venda> Venda { get; set; }
+        public virtual DbSet<Cliente> Cliente { get; set; }
+        public virtual DbSet<Fornecedor> Fornecedor { get; set; }
     }
 }

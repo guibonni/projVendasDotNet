@@ -24,7 +24,13 @@ namespace ProjVendasAula
 
         private void LoadGrid()
         {
-            GVFornecedor.DataSource = new Entities().Fornecedor.ToList<Fornecedor>();
+            List<Fornecedor> fornecedores = new Entities().Fornecedor.ToList<Fornecedor>();
+            foreach (Fornecedor fornecedor in fornecedores)
+            {
+                fornecedor.CNPJ = GerarCNPJCompleto(fornecedor.CNPJ);
+            }
+
+            GVFornecedor.DataSource = fornecedores;
             GVFornecedor.DataBind();
         }
 
@@ -41,7 +47,7 @@ namespace ProjVendasAula
                 Telefone = TxtTelefoneFornecedor.Text,
                 Cidade = TxtCidadeFornecedor.Text,
                 Endereco = TxtEnderecoFornecedor.Text,
-                CNPJ = Int32.Parse(TxtCNPJ.Text.Substring(0, 8))
+                CNPJ = TxtCNPJ.Text.Substring(0, 12)
             };
 
             Entities context = new Entities();
@@ -57,6 +63,64 @@ namespace ProjVendasAula
             TxtCidadeFornecedor.Text = "";
             TxtEnderecoFornecedor.Text = "";
             TxtCNPJ.Text = "";
+        }
+
+        private string GerarCNPJCompleto(string cnpj)
+        {
+            int[] multiplicador1 = new int[12] { 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
+            int[] multiplicador2 = new int[13] { 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
+            int soma;
+            int resto;
+            string digito;
+            string tempCnpj;
+
+            tempCnpj = cnpj.Trim();
+
+            soma = 0;
+
+            for (int i = 0; i < 12; i++)
+            {
+                soma += int.Parse(tempCnpj[i].ToString()) * multiplicador1[i];
+            }
+
+            resto = (soma % 11);
+
+            if (resto < 2)
+            {
+                resto = 0;
+            }
+            else
+            {
+                resto = 11 - resto;
+            }
+
+            digito = resto.ToString();
+
+            tempCnpj = tempCnpj + digito;
+
+            soma = 0;
+
+            for (int i = 0; i < 13; i++)
+            {
+                soma += int.Parse(tempCnpj[i].ToString()) * multiplicador2[i];
+            }
+
+            resto = (soma % 11);
+
+            if (resto < 2)
+            {
+                resto = 0;
+            }
+            else
+            {
+                resto = 11 - resto;
+            }
+
+            digito = resto.ToString();
+
+            tempCnpj = tempCnpj + digito;
+
+            return tempCnpj.Substring(0, 2) + "." + tempCnpj.Substring(2, 3) + "." + tempCnpj.Substring(5, 3) + "/" + tempCnpj.Substring(8, 4) + "-" + tempCnpj.Substring(12, 2);
         }
     }
 }

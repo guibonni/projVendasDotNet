@@ -27,9 +27,9 @@ namespace ProjVendasAula
         public decimal Valor { get; set; }
         public int IdFornecedor { get; set; }
     
-        public virtual Fornecedor Fornecedor { get; set; }
         public virtual Tipo Tipo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Venda> Venda { get; set; }
+        public virtual Fornecedor Fornecedor { get; set; }
     }
 }

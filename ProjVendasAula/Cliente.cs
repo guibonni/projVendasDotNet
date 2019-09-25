@@ -25,7 +25,7 @@ namespace ProjVendasAula
         public string Telefone { get; set; }
         public string Cidade { get; set; }
         public string Endereco { get; set; }
-        public int CPF { get; set; }
+        public string CPF { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Venda> Venda { get; set; }

@@ -24,7 +24,12 @@ namespace ProjVendasAula
 
         private void LoadGrid()
         {
-            GVCliente.DataSource = new Entities().Cliente.ToList<Cliente>();
+            List<Cliente> clientes = new Entities().Cliente.ToList<Cliente>();
+            foreach (Cliente cliente in clientes)
+            {
+                cliente.CPF = GerarCPFCompleto(int.Parse(cliente.CPF));
+            }
+            GVCliente.DataSource = clientes;
             GVCliente.DataBind();
         }
 
@@ -41,7 +46,7 @@ namespace ProjVendasAula
                 Telefone = TxtTelefone.Text,
                 Cidade = TxtCidade.Text,
                 Endereco = TxtEndereco.Text,
-                CPF = Int32.Parse(TxtCPF.Text.Substring(0, 9))
+                CPF = TxtCPF.Text.Substring(0, 9)
             };
 
             Entities context = new Entities();
@@ -57,6 +62,63 @@ namespace ProjVendasAula
             TxtCidade.Text = "";
             TxtEndereco.Text = "";
             TxtCPF.Text = "";
+        }
+
+        private string GerarCPFCompleto(int cpf)
+        {
+            int[] multiplicador1 = new int[9] { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
+            int[] multiplicador2 = new int[10] { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
+            int soma;
+            int resto;
+            string digito;
+
+            string cpfString = cpf.ToString();
+
+            soma = 0;
+
+            for (int i = 0; i < 9; i++)
+            {
+                soma += int.Parse(cpfString[i].ToString()) * multiplicador1[i];
+            }
+
+            resto = soma % 11;
+
+            if (resto < 2)
+            {
+                resto = 0;
+            }
+            else
+            {
+                resto = 11 - resto;
+            }
+
+            digito = resto.ToString();
+
+            cpfString = cpfString + digito;
+
+            soma = 0;
+
+            for (int i = 0; i < 10; i++)
+            {
+                soma += int.Parse(cpfString[i].ToString()) * multiplicador2[i];
+            }
+
+            resto = soma % 11;
+
+            if (resto < 2)
+            {
+                resto = 0;
+            }
+            else
+            {
+                resto = 11 - resto;
+            }
+
+            digito = resto.ToString();
+
+            cpfString = cpfString + digito;
+
+            return cpfString.Substring(0, 3) + "." + cpfString.Substring(3, 3) + "." + cpfString.Substring(6, 3) + "-" + cpfString.Substring(9, 2);
         }
     }
 }

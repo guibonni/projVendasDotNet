@@ -26,7 +26,7 @@ namespace ProjVendasAula
         public string Telefone { get; set; }
         public string Cidade { get; set; }
         public string Endereco { get; set; }
-        public int CNPJ { get; set; }
+        public string CNPJ { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Material> Material { get; set; }

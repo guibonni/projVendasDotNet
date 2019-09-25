@@ -20,8 +20,8 @@ namespace ProjVendasAula
         public int IdMaterial { get; set; }
         public System.DateTime DataVenda { get; set; }
     
+        public virtual Material Material { get; set; }
         public virtual Cliente Cliente { get; set; }
         public virtual Fornecedor Fornecedor { get; set; }
-        public virtual Material Material { get; set; }
     }
 }

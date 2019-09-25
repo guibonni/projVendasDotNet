@@ -9,7 +9,7 @@
     <Property Name="Telefone" Type="varchar" MaxLength="50" />
     <Property Name="Cidade" Type="varchar" MaxLength="255" />
     <Property Name="Endereco" Type="varchar" MaxLength="500" />
-    <Property Name="CPF" Type="int" Nullable="false" />
+    <Property Name="CPF" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="Fornecedor">
     <Key>
@@ -20,7 +20,7 @@
     <Property Name="Telefone" Type="varchar" MaxLength="50" />
     <Property Name="Cidade" Type="varchar" MaxLength="255" />
     <Property Name="Endereco" Type="varchar" MaxLength="500" />
-    <Property Name="CNPJ" Type="int" Nullable="false" />
+    <Property Name="CNPJ" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="Material">
     <Key>

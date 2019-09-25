@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cliente">
           <Key>
             <PropertyRef Name="Id" />
@@ -14,7 +14,7 @@
           <Property Name="Telefone" Type="varchar" MaxLength="50" />
           <Property Name="Cidade" Type="varchar" MaxLength="255" />
           <Property Name="Endereco" Type="varchar" MaxLength="500" />
-          <Property Name="CPF" Type="int" Nullable="false" />
+          <Property Name="CPF" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Fornecedor">
           <Key>
@@ -25,7 +25,7 @@
           <Property Name="Telefone" Type="varchar" MaxLength="50" />
           <Property Name="Cidade" Type="varchar" MaxLength="255" />
           <Property Name="Endereco" Type="varchar" MaxLength="500" />
-          <Property Name="CNPJ" Type="int" Nullable="false" />
+          <Property Name="CNPJ" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Material">
           <Key>
@@ -142,36 +142,10 @@
             <End Role="Venda" EntitySet="Venda" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Cliente">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nome" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Telefone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Cidade" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Endereco" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="CPF" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Venda" Relationship="Self.FK_Venda_Cliente1" FromRole="Cliente" ToRole="Venda" />
-        </EntityType>
-        <EntityType Name="Fornecedor">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nome" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Telefone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Cidade" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Endereco" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="CNPJ" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Material" Relationship="Self.FK_Material_Fornecedor1" FromRole="Fornecedor" ToRole="Material" />
-          <NavigationProperty Name="Venda" Relationship="Self.FK_Venda_Fornecedor1" FromRole="Fornecedor" ToRole="Venda" />
-        </EntityType>
         <EntityType Name="Material">
           <Key>
             <PropertyRef Name="Id" />
@@ -182,9 +156,9 @@
           <Property Name="IdTipo" Type="Int32" Nullable="false" />
           <Property Name="Valor" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="IdFornecedor" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Fornecedor" Relationship="Self.FK_Material_Fornecedor1" FromRole="Material" ToRole="Fornecedor" />
           <NavigationProperty Name="Tipo" Relationship="Self.FK_Material_Tipo1" FromRole="Material" ToRole="Tipo" />
           <NavigationProperty Name="Venda" Relationship="Self.FK_Venda_Material1" FromRole="Material" ToRole="Venda" />
+          <NavigationProperty Name="Fornecedor" Relationship="Model.FK_Material_Fornecedor1" FromRole="Material" ToRole="Fornecedor" />
         </EntityType>
         <EntityType Name="Tipo">
           <Key>
@@ -203,46 +177,10 @@
           <Property Name="IdCliente" Type="Int32" Nullable="false" />
           <Property Name="IdMaterial" Type="Int32" Nullable="false" />
           <Property Name="DataVenda" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Cliente" Relationship="Self.FK_Venda_Cliente1" FromRole="Venda" ToRole="Cliente" />
-          <NavigationProperty Name="Fornecedor" Relationship="Self.FK_Venda_Fornecedor1" FromRole="Venda" ToRole="Fornecedor" />
           <NavigationProperty Name="Material" Relationship="Self.FK_Venda_Material1" FromRole="Venda" ToRole="Material" />
+          <NavigationProperty Name="Cliente" Relationship="Model.FK_Venda_Cliente1" FromRole="Venda" ToRole="Cliente" />
+          <NavigationProperty Name="Fornecedor" Relationship="Model.FK_Venda_Fornecedor1" FromRole="Venda" ToRole="Fornecedor" />
         </EntityType>
-        <Association Name="FK_Venda_Cliente1">
-          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
-          <End Role="Venda" Type="Self.Venda" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cliente">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Venda">
-              <PropertyRef Name="IdCliente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Material_Fornecedor1">
-          <End Role="Fornecedor" Type="Self.Fornecedor" Multiplicity="1" />
-          <End Role="Material" Type="Self.Material" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Fornecedor">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Material">
-              <PropertyRef Name="IdFornecedor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Venda_Fornecedor1">
-          <End Role="Fornecedor" Type="Self.Fornecedor" Multiplicity="1" />
-          <End Role="Venda" Type="Self.Venda" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Fornecedor">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Venda">
-              <PropertyRef Name="IdFornecedor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Material_Tipo1">
           <End Role="Tipo" Type="Self.Tipo" Multiplicity="1" />
           <End Role="Material" Type="Self.Material" Multiplicity="*" />
@@ -268,23 +206,9 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Cliente" EntityType="Self.Cliente" />
-          <EntitySet Name="Fornecedor" EntityType="Self.Fornecedor" />
           <EntitySet Name="Material" EntityType="Self.Material" />
           <EntitySet Name="Tipo" EntityType="Self.Tipo" />
           <EntitySet Name="Venda" EntityType="Self.Venda" />
-          <AssociationSet Name="FK_Venda_Cliente1" Association="Self.FK_Venda_Cliente1">
-            <End Role="Cliente" EntitySet="Cliente" />
-            <End Role="Venda" EntitySet="Venda" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Material_Fornecedor1" Association="Self.FK_Material_Fornecedor1">
-            <End Role="Fornecedor" EntitySet="Fornecedor" />
-            <End Role="Material" EntitySet="Material" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Venda_Fornecedor1" Association="Self.FK_Venda_Fornecedor1">
-            <End Role="Fornecedor" EntitySet="Fornecedor" />
-            <End Role="Venda" EntitySet="Venda" />
-          </AssociationSet>
           <AssociationSet Name="FK_Material_Tipo1" Association="Self.FK_Material_Tipo1">
             <End Role="Tipo" EntitySet="Tipo" />
             <End Role="Material" EntitySet="Material" />
@@ -293,37 +217,88 @@
             <End Role="Material" EntitySet="Material" />
             <End Role="Venda" EntitySet="Venda" />
           </AssociationSet>
+          <EntitySet Name="Cliente" EntityType="Model.Cliente" />
+          <AssociationSet Name="FK_Venda_Cliente1" Association="Model.FK_Venda_Cliente1">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Venda" EntitySet="Venda" />
+          </AssociationSet>
+          <EntitySet Name="Fornecedor" EntityType="Model.Fornecedor" />
+          <AssociationSet Name="FK_Material_Fornecedor1" Association="Model.FK_Material_Fornecedor1">
+            <End Role="Fornecedor" EntitySet="Fornecedor" />
+            <End Role="Material" EntitySet="Material" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Venda_Fornecedor1" Association="Model.FK_Venda_Fornecedor1">
+            <End Role="Fornecedor" EntitySet="Fornecedor" />
+            <End Role="Venda" EntitySet="Venda" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Telefone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Cidade" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Endereco" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CPF" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Venda" Relationship="Model.FK_Venda_Cliente1" FromRole="Cliente" ToRole="Venda" />
+        </EntityType>
+        <Association Name="FK_Venda_Cliente1">
+          <End Type="Model.Cliente" Role="Cliente" Multiplicity="1" />
+          <End Type="Model.Venda" Role="Venda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Venda">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Fornecedor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Telefone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Cidade" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Endereco" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CNPJ" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Material" Relationship="Model.FK_Material_Fornecedor1" FromRole="Fornecedor" ToRole="Material" />
+          <NavigationProperty Name="Venda" Relationship="Model.FK_Venda_Fornecedor1" FromRole="Fornecedor" ToRole="Venda" />
+        </EntityType>
+        <Association Name="FK_Material_Fornecedor1">
+          <End Type="Model.Fornecedor" Role="Fornecedor" Multiplicity="1" />
+          <End Type="Model.Material" Role="Material" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fornecedor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Material">
+              <PropertyRef Name="IdFornecedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Venda_Fornecedor1">
+          <End Type="Model.Fornecedor" Role="Fornecedor" Multiplicity="1" />
+          <End Type="Model.Venda" Role="Venda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fornecedor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Venda">
+              <PropertyRef Name="IdFornecedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
-          <EntitySetMapping Name="Cliente">
-            <EntityTypeMapping TypeName="Model.Cliente">
-              <MappingFragment StoreEntitySet="Cliente">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Nome" ColumnName="Nome" />
-                <ScalarProperty Name="Telefone" ColumnName="Telefone" />
-                <ScalarProperty Name="Cidade" ColumnName="Cidade" />
-                <ScalarProperty Name="Endereco" ColumnName="Endereco" />
-                <ScalarProperty Name="CPF" ColumnName="CPF" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Fornecedor">
-            <EntityTypeMapping TypeName="Model.Fornecedor">
-              <MappingFragment StoreEntitySet="Fornecedor">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Nome" ColumnName="Nome" />
-                <ScalarProperty Name="Telefone" ColumnName="Telefone" />
-                <ScalarProperty Name="Cidade" ColumnName="Cidade" />
-                <ScalarProperty Name="Endereco" ColumnName="Endereco" />
-                <ScalarProperty Name="CNPJ" ColumnName="CNPJ" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Material">
             <EntityTypeMapping TypeName="Model.Material">
               <MappingFragment StoreEntitySet="Material">
@@ -352,6 +327,30 @@
                 <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
                 <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
                 <ScalarProperty Name="DataVenda" ColumnName="DataVenda" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cliente">
+            <EntityTypeMapping TypeName="Model.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="CPF" ColumnName="CPF" />
+                <ScalarProperty Name="Endereco" ColumnName="Endereco" />
+                <ScalarProperty Name="Cidade" ColumnName="Cidade" />
+                <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fornecedor">
+            <EntityTypeMapping TypeName="Model.Fornecedor">
+              <MappingFragment StoreEntitySet="Fornecedor">
+                <ScalarProperty Name="CNPJ" ColumnName="CNPJ" />
+                <ScalarProperty Name="Endereco" ColumnName="Endereco" />
+                <ScalarProperty Name="Cidade" ColumnName="Cidade" />
+                <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
